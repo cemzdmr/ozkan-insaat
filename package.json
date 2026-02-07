@@ -1,0 +1,22 @@
+{
+  "name": "ozkan-insaat-corporate",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Premium corporate website for Özkan İnşaat - Construction & Excavation Group",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "build": "npm run build:frontend && npm run build:backend",
+    "build:frontend": "cd frontend && npm run build",
+    "build:backend": "cd backend && npm run build",
+    "start": "npm run start:backend",
+    "start:backend": "cd backend && npm run start",
+    "setup": "npm run install:all && npm run db:setup",
+    "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install",
+    "db:setup": "cd backend && npx prisma generate && npx prisma migrate dev"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
