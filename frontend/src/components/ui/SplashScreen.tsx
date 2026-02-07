@@ -52,34 +52,39 @@ export default function SplashScreen() {
           </div>
 
           {/* Animated Construction Particles */}
-          {[...Array(20)].map((_, i) => (
-            <motion.div
-              key={i}
-              initial={{ 
-                x: Math.random() * window.innerWidth,
-                y: -20,
-                opacity: 0.6,
-                scale: Math.random() * 0.5 + 0.5
-              }}
-              animate={{ 
-                y: window.innerHeight + 20,
-                opacity: [0.6, 1, 0.6, 0],
-                rotate: Math.random() * 360
-              }}
-              transition={{
-                duration: Math.random() * 3 + 2,
-                delay: Math.random() * 2,
-                repeat: Infinity,
-                ease: "linear"
-              }}
-              className="absolute w-2 h-2 bg-yellow-400"
-              style={{
-                clipPath: i % 3 === 0 ? 'polygon(50% 0%, 100% 100%, 0% 100%)' : 
-                          i % 3 === 1 ? 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)' :
-                          'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)'
-              }}
-            />
-          ))}
+          {typeof window !== 'undefined' && [...Array(20)].map((_, i) => {
+            const winWidth = typeof window !== 'undefined' ? window.innerWidth : 1920;
+            const winHeight = typeof window !== 'undefined' ? window.innerHeight : 1080;
+            
+            return (
+              <motion.div
+                key={i}
+                initial={{ 
+                  x: Math.random() * winWidth,
+                  y: -20,
+                  opacity: 0.6,
+                  scale: Math.random() * 0.5 + 0.5
+                }}
+                animate={{ 
+                  y: winHeight + 20,
+                  opacity: [0.6, 1, 0.6, 0],
+                  rotate: Math.random() * 360
+                }}
+                transition={{
+                  duration: Math.random() * 3 + 2,
+                  delay: Math.random() * 2,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+                className="absolute w-2 h-2 bg-yellow-400"
+                style={{
+                  clipPath: i % 3 === 0 ? 'polygon(50% 0%, 100% 100%, 0% 100%)' : 
+                            i % 3 === 1 ? 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)' :
+                            'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)'
+                }}
+              />
+            );
+          })}
 
           {/* Main Content */}
           <div className="relative z-10 flex flex-col items-center">
